@@ -1,0 +1,17 @@
+B0: 1.5
+B1: 5.0
+TR: 10
+components:
+- {CS: 0.0, Meq: 1.0, T1: 1000000000.0, T2: 1000000000.0, name: water}
+- {CS: -3.40389262, Meq: 1.0, T1: 1000000000.0, T2: 1000000000.0, name: fat}
+isochromatStep: 0.03
+nIsochromats: 15
+nTR: 1
+outFile3D: binomial2_3D.gif
+outFileMxy: ''
+outFileMz: ''
+pulseSeq:
+- {FA: 45, t: 0}
+- {FA: 45, t: 2.3}
+speed: 0.001
+title: Binomial-2

@@ -1,0 +1,16 @@
+B0: 1.5
+B1: 1.0
+TR: 5
+components:
+- {CS: 0.0, Meq: 1.0, T1: 60.0, T2: 55.0, name: ''}
+isochromatStep: 0.01
+nIsochromats: 1
+nTR: 15
+outFile3D: SPGR_3D.gif
+outFileMxy: ''
+outFileMz: ''
+pulseSeq:
+- {FA: 15, t: 0}
+- {FA: 0, t: 5}
+speed: 0.005
+title: Spoiled Gradient Echo

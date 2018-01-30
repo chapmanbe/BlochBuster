@@ -1,0 +1,19 @@
+B0: 1.5
+B1: 100
+TR: 130
+components:
+- {CS: 0.0, Meq: 1.0, T1: 1000000000.0, T2: 100, name: ''}
+isochromatStep: 0.02
+nIsochromats: 30
+nTR: 1
+outFile3D: FSE_3D.gif
+outFileMxy: ''
+outFileMz: ''
+pulseSeq:
+- {FA: 90, t: 0}
+- {FA: 180, t: 10}
+- {FA: 180, t: 30}
+- {FA: 180, t: 50}
+- {FA: 180, t: 70}
+speed: 0.01
+title: FSE

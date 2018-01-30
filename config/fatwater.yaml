@@ -1,0 +1,16 @@
+B0: 1.5
+B1: 100
+TR: 15
+components:
+- {CS: 0.0, Meq: 1.0, T1: 870, T2: 47, name: water}
+- {CS: 3.4, Meq: 1.0, T1: 260, T2: 84, name: fat}
+isochromatStep: 0.01
+nIsochromats: 1
+nTR: 1
+outFile3D: fatwater_3D.gif
+outFileMxy: fatwater_tra.gif
+outFileMz: ''
+pulseSeq:
+- {FA: 90, t: 0}
+speed: 0.001
+title: Fat and Water Precession (1.5 T)

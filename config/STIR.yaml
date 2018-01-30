@@ -1,0 +1,19 @@
+B0: 1.5
+B1: 1.0
+TR: 800
+components:
+- {CS: 0.0, Meq: 1.0, T1: 2400, T2: 160, name: fluid}
+- {CS: 0.0, Meq: 1.0, T1: 870, T2: 47, name: muscle}
+- {CS: 0.0, Meq: 1.0, T1: 260, T2: 84, name: fat}
+isochromatStep: 0.01
+nIsochromats: 1
+nTR: 1
+outFile3D: STIR_3D.gif
+outFileMxy: ''
+outFileMz: STIR_long.gif
+pulseSeq:
+- {FA: 180, t: 0}
+- {FA: 90, t: 180}
+- {FA: 180, phase: 180, t: 190}
+speed: 0.03
+title: STIR

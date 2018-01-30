@@ -1,0 +1,22 @@
+B0: 1.5
+B1: 5.0
+TR: 20
+components:
+- {CS: 0.0, Meq: 1.0, T1: 1000000000.0, T2: 1000000000.0, name: water}
+- {CS: -3.40389262, Meq: 1.0, T1: 1000000000.0, T2: 1000000000.0, name: fat}
+isochromatStep: 0.03
+nIsochromats: 15
+nTR: 1
+outFile3D: binomial7_3D.gif
+outFileMxy: ''
+outFileMz: ''
+pulseSeq:
+- {FA: 1.4, t: 0}
+- {FA: 8.4, t: 2.3}
+- {FA: 21.1, t: 4.6}
+- {FA: 28.1, t: 6.9}
+- {FA: 21.1, t: 9.2}
+- {FA: 8.4, t: 11.5}
+- {FA: 1.4, t: 13.8}
+speed: 0.001
+title: Binomial-7
