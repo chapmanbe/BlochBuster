@@ -24,9 +24,10 @@ import numpy as np
 import scipy.integrate as integrate
 import os.path
 import shutil
-import csv
 import optparse
 import json
+import os
+import yaml
 
 colors = {  'bg': [1,1,1], 
             'circle': [0,0,0,.03],
@@ -289,14 +290,37 @@ def getClockSpoilAndRFText(pulseSeq, TR, nTR, w1, dt, instantRF=False):
 def filename(dir, frame): return dir + '/' + format(frame+1, '04') + '.png'
 
 
+def read_config(fname):
+    """
+    Returns a configuration stored in fname
+
+    fname: a string pointing to a file on the system. Must end in '.json' or '.yaml'
+
+    returns:
+        A dictionary of configuration values
+
+    exceptions:
+        A TypeError is raised if fname does not meet suffix expectations.
+    """
+    name, suffix = os.path.splitext(fname)
+    
+    if suffix not in ['.yaml', '.yml', '.json']:
+        raise TypeError("must specify a .json or .yaml (.yml) file")
+    with open(fname) as f0:
+        if suffix == '.json':
+            return json.load(f0)
+        else:
+            return yaml.load(f0)
+
 # Main program
+
 def BlochBuster(configFile, leapFactor=1, blackBackground=False):
     if blackBackground:
         for i in ['bg', 'axis', 'text', 'circle']:
             colors[i][:3] = list(map(lambda x: 1-x, colors[i][:3]))
     # Read configuration file
-    with open(configFile, 'r') as f:
-        config = json.load(f)
+
+    config = read_config(configFile)
     # Assert pulses in pulseSeq are sorted according to time
     config['pulseSeq'] = sorted(config['pulseSeq'], key=lambda pulse: pulse['t']) 
     # Set complex flip angles
@@ -317,9 +341,11 @@ def BlochBuster(configFile, leapFactor=1, blackBackground=False):
     # Simulate
     comps = []
     for component in config['components']:
-        comps.append(simulateComponent(component, w0, config['nIsochromats'], config['isochromatStep'], config['pulseSeq'], config['TR'], w1, config['nTR'], dt, instantRF))
+        comps.append(simulateComponent(component, w0, config['nIsochromats'], config['isochromatStep'], 
+                                       config['pulseSeq'], config['TR'], w1, config['nTR'], dt, instantRF))
     # Animate
-    clock, spoilTextAlpha, RFTextAlpha, RFText = getClockSpoilAndRFText(config['pulseSeq'], config['TR'], config['nTR'], w1, dt, instantRF)
+    clock, spoilTextAlpha, RFTextAlpha, RFText = \
+            getClockSpoilAndRFText(config['pulseSeq'], config['TR'], config['nTR'], w1, dt, instantRF)
     delay = int(100/fps*leapFactor)  # Delay between frames in ticks of 1/100 sec
     nFrames = len(comps[0][0][0])
     if not config['outFile3D']+config['outFileMxy']+config['outFileMz']:
@@ -348,8 +374,8 @@ def BlochBuster(configFile, leapFactor=1, blackBackground=False):
                 plt.close()
             if not os.path.isdir(outdir):
                 os.mkdir(outdir)
-            outfile = r'./out/'+outfile
-            print(r'Creating animated gif "{}"'.format(outfile))
+            outfile = os.path.join('out'+outfile)
+            print('Creating animated gif "{}"'.format(outfile))
             compress = r'-layers Optimize'
             os.system(('convert {} -delay {} {}/*png {}'.format(compress, delay, tmpdir, outfile)))
             shutil.rmtree(tmpdir)
