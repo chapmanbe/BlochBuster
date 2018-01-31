@@ -369,7 +369,7 @@ def BlochBuster(configFile, leapFactor=1, blackBackground=False):
                 else:
                     plotFrameMT(names, comps, config['title'], clock, frame, plotType)
                 file = filename(tmpdir, frame)
-                print(r'Saving frame {}/{} as "{}"'.format(frame+1, nFrames, file))
+                #print(r'Saving frame {}/{} as "{}"'.format(frame+1, nFrames, file))
                 plt.savefig(file, facecolor=plt.gcf().get_facecolor())
                 plt.close()
             if not os.path.isdir(outdir):
